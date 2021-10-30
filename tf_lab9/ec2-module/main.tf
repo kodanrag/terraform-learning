@@ -1,8 +1,5 @@
 # This code is to demo tf modules
 
-provider "aws" {
-	region = var.region
-}
 
 resource "aws_instance" "tf_lab9_instance" {
 	instance_type = var.instance_type
@@ -13,24 +10,27 @@ resource "aws_instance" "tf_lab9_instance" {
 	}
 }
 
+
 # Below Data Block was taken from https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/instance and customized.
+# Currently we are commenting out the below block as our testing with modules was not needed wit below changes
 
-data "aws_ami" "windows" {
-  most_recent = true
+###### data "aws_ami" "windows" {
+######  most_recent = true
 
-  filter {
-    name   = "name"
+######  filter {
+######    name   = "name"
 # To get below values run the following aws command:
 # aws ec2 describe-images --owners amazon --image-ids <ami_id>
-    values = ["Windows_Server-2019-English-Full-Base-*"]
-  }
+######    values = ["Windows_Server-2019-English-Full-Base-*"]
+######  }
 
-  filter {
-    name   = "virtualization-type"
-    values = ["hvm"]
-  }
+######  filter {
+######    name   = "virtualization-type"
+######    values = ["hvm"]
+######  }
 
 # To get below owners run the following aws command:
 # aws ec2 describe-images --owners amazon --image-ids <ami_id>
-  owners = ["801119661308"] # Canonical
-}
+######  owners = ["801119661308"] # Canonical
+######}
+

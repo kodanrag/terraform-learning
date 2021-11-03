@@ -1,0 +1,11 @@
+# Below key and value looks same. This is just an example, we can have different key and different value
+
+raghu_vpc_cidr_block = "10.0.0.0/16"
+raghu_vpc_instance_tenancy = "default"
+raghu_vpc_name = "raghu_vpc"
+raghu_subnet_pub_cidr_block = "10.0.1.0/24"
+raghu_subnet_pvt_cidr_block = "10.0.2.0/24"
+raghu_subnet_pub_name = "raghu_subnet_pub_name"
+raghu_subnet_pvt_name = "raghu_subnet_pvt_name"
+raghu_internet_gateway = "raghu_internet_gateway"
+raghu_route_table_pub = "raghu_route_table_pub"

@@ -33,3 +33,16 @@ variable "raghu_internet_gateway" {
 variable "raghu_route_table_pub" {
 
 }
+
+
+variable "raghu_ami" {
+}
+
+variable "raghu_instance_type" {
+}
+
+variable "raghu_ec2_instance" {
+}
+
+variable "raghu_Environment" {
+}

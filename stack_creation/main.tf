@@ -70,3 +70,32 @@ resource "aws_route_table_association" "raghu_subnet_pub_association" {
   subnet_id      = aws_subnet.raghu_subnet_pub_name.id
   route_table_id = aws_route_table.raghu_route_table_pub.id
 }
+
+# IMPORTANT NOTE ON VAR W.R.T MODULES:
+
+########## In root main.tf, consider variable example within a module block as below:
+########## ami = var.raghu_ami
+########## Here two things to be considred:
+########## 1. Compulsorily define "raghu_ami" as a variable in root directory variable.tf
+########## 2. Assign a value to "raghu_ami" using tfvars
+
+########## In main.tf of the module directory, consider variable example within a resource block as below:
+########## ami = var.ami
+########## if we need to pick the value of the variable "ami" from the root main.tf
+########## Here two things to be considered:
+########## 1. Compulsorily define "ami" as a variable in module directory variable.tf
+########## 2. value assignment  happenes from root.tf so no need to add in tfvars
+
+module "ec2_instance" {
+  # source  = "terraform-aws-modules/ec2-instance/aws" # example for module registry
+  source  = "./ec2_instance/"
+
+  ami                    = var.raghu_ami
+  instance_type          = var.raghu_instance_type
+  #vpc_security_group_ids = ["sg-12345678"]
+  subnet_id              = aws_subnet.raghu_subnet_pub_name.id
+  Name = var.raghu_ec2_instance
+  Environment = var.raghu_Environment
+}
+
+

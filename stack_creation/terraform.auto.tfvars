@@ -13,3 +13,7 @@ raghu_ami = "ami-01cc34ab2709337aa"
 raghu_instance_type = "t2.micro"
 raghu_ec2_instance = "raghu_ec2_instance_pub"
 raghu_Environment = "Dev"
+raghu_sg_pub = "raghu_sg_pub"
+raghu_sg_description = "This security group is for ec2 instance in public subnet"
+raghu_http_port = 80
+raghu_protocol = "tcp"

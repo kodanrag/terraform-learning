@@ -71,6 +71,44 @@ resource "aws_route_table_association" "raghu_subnet_pub_association" {
   route_table_id = aws_route_table.raghu_route_table_pub.id
 }
 
+resource "aws_security_group" "raghu_sg_pub" {
+  name        = var.raghu_sg_pub
+  description = var.raghu_sg_description
+  vpc_id      = aws_vpc.raghu_vpc_name.id
+
+  ingress = [
+    {
+      description      = "TLS from VPC"
+      from_port        = var.raghu_http_port
+      to_port          = var.raghu_http_port
+      protocol         = var.raghu_protocol
+      cidr_blocks      = [aws_vpc.raghu_vpc_name.cidr_block]
+      ipv6_cidr_blocks = [aws_vpc.raghu_vpc_name.ipv6_cidr_block]
+      prefix_list_ids  = []
+      security_groups  = []
+      self = false
+    }
+  ]
+
+  egress = [
+    {
+      description      = "TLS from VPC"
+      from_port        = 0
+      to_port          = 0
+      protocol         = "-1"
+      cidr_blocks      = ["0.0.0.0/0"]
+      ipv6_cidr_blocks = ["::/0"]
+      prefix_list_ids  = []
+      security_groups  = []
+      self = false
+    }
+  ]
+
+  tags = {
+    Name = var.raghu_sg_pub
+  }
+}
+
 # IMPORTANT NOTE ON VAR W.R.T MODULES:
 
 ########## In root main.tf, consider variable example within a module block as below:
@@ -92,10 +130,10 @@ module "ec2_instance" {
 
   ami                    = var.raghu_ami
   instance_type          = var.raghu_instance_type
-  #vpc_security_group_ids = ["sg-12345678"]
+  #vpc_security_group_ids = aws_security_group.raghu_sg_pub.id
+  vpc_security_group_ids = aws_security_group.raghu_sg_pub.id
   subnet_id              = aws_subnet.raghu_subnet_pub_name.id
   Name = var.raghu_ec2_instance
   Environment = var.raghu_Environment
 }
-
 

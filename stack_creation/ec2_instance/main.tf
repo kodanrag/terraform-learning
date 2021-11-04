@@ -8,6 +8,6 @@ resource "aws_instance" "raghu_ec2_instance" {
     		Name = var.Name
     		Environment = var.Environment
  	}
-
+        vpc_security_group_ids = [ var.vpc_security_group_ids ]
 }
 

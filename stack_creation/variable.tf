@@ -9,9 +9,12 @@ variable "raghu_internet_gateway" {}
 variable "raghu_route_table_pub" {}
 variable "raghu_ami" {}
 variable "raghu_instance_type" {}
-variable "raghu_ec2_instance" {}
+#variable "raghu_ec2_instance" {}
 variable "raghu_Environment" {}
 variable "raghu_sg_pub" {}
 variable "raghu_sg_description" {}
 variable "raghu_http_port" {}
 variable "raghu_protocol" {}
+variable "raghu_ssh_port" {}
+variable "raghu_no_of_ec2" {
+}

@@ -1,1 +1,1 @@
-print("hello Code Rabbit!!")
+trint("hello Code Rabbit!!")
